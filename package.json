@@ -21,7 +21,10 @@
     "url": "https://github.com/Ememme/DAFT_FELU_homework_1/issues"
   },
   "homepage": "https://github.com/Ememme/DAFT_FELU_homework_1#readme",
-  "dependencies": {},
+  "dependencies": {
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
   "devDependencies": {
     "package": "^1.0.1"
   }
