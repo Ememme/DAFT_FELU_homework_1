@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d dist",
+    "publish-demo": "npm run build && npm run deploy"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
   },
   "homepage": "https://github.com/Ememme/DAFT_FELU_homework_1#readme",
   "dependencies": {
+    "remove-files-webpack-plugin": "^1.1.1",
     "webpack-cli": "^3.3.0"
   },
   "devDependencies": {
@@ -32,6 +35,7 @@
     "babel-loader": "^8.0.5",
     "css-loader": "^2.1.1",
     "file-loader": "^3.0.1",
+    "gh-pages": "^2.0.1",
     "google-fonts-plugin": "^4.0.2",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.11.0",

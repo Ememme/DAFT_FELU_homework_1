@@ -1,12 +1,14 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var GoogleFontsPlugin = require('google-fonts-plugin')
+var GoogleFontsPlugin = require('google-fonts-plugin');
+var RemovePlugin = require('remove-files-webpack-plugin');
 var path = require('path');
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: 'dist/main.js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: "https://ememme.github.io/DAFT_FELU_homework_1/",
   },
   plugins: [
     new HtmlWebpackPlugin(), 
@@ -30,7 +32,16 @@ module.exports = {
           "woff",
           "woff2"
       ]
-      })
+      }),
+      new RemovePlugin({
+        /**
+         * Before compilation removes entire `dist` folder.
+         */
+        before: {
+            include: ['dist']
+        },
+
+    })
     ],
   module: {
     rules: [
