@@ -1,4 +1,5 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var GoogleFontsPlugin = require('google-fonts-plugin')
 var path = require('path');
 
 module.exports = {
@@ -9,6 +10,27 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin(), 
+    new GoogleFontsPlugin({
+      "fonts": [
+          {
+              "family": "Lato",
+              "variants": [
+                  "300",
+                  "300i",
+                  "400",
+                  "700i",
+                  "900"
+              ],
+              "subsets": [
+                  "latin-ext"
+              ]
+          }
+      ],
+      "formats": [
+          "woff",
+          "woff2"
+      ]
+      })
     ],
   module: {
     rules: [
