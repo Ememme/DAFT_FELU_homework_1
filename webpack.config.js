@@ -11,41 +11,37 @@ module.exports = {
     publicPath: "https://ememme.github.io/DAFT_FELU_homework_1/",
   },
   plugins: [
-    new HtmlWebpackPlugin(), 
+    new HtmlWebpackPlugin(),
     new GoogleFontsPlugin({
-      "fonts": [
-          {
-              "family": "Lato",
-              "variants": [
-                  "300",
-                  "300i",
-                  "400",
-                  "700i",
-                  "900"
-              ],
-              "subsets": [
-                  "latin-ext"
-              ]
-          }
-      ],
+      "fonts": [{
+        "family": "Lato",
+        "variants": [
+          "300",
+          "300i",
+          "400",
+          "700i",
+          "900"
+        ],
+        "subsets": [
+          "latin-ext"
+        ]
+      }],
       "formats": [
-          "woff",
-          "woff2"
+        "woff",
+        "woff2"
       ]
-      }),
-      new RemovePlugin({
-        /**
-         * Before compilation removes entire `dist` folder.
-         */
-        before: {
-            include: ['dist']
-        },
-
+    }),
+    new RemovePlugin({
+      /**
+       * Before compilation removes entire `dist` folder.
+       */
+      before: {
+        include: ['dist']
+      },
     })
-    ],
+  ],
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
@@ -57,33 +53,31 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: true }
+        use: [{
+          loader: "html-loader",
+          options: {
+            minimize: true
           }
-        ]
+        }]
       },
       {
         test: [/.css$|.scss$/],
         use: [
-          "style-loader", 
-          'css-loader', 
+          "style-loader",
+          'css-loader',
           'sass-loader'
         ]
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[hash:8].[ext]',
-              outputPath: 'assets/imgs/'
-            }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[hash:8].[ext]',
+            outputPath: 'assets/imgs/'
           }
-        ]
+        }]
       }
-    ] 
+    ]
   }
 };
