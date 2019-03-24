@@ -7,7 +7,9 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin(), 
+    ],
   module: {
     rules: [
       {
@@ -21,10 +23,20 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.html$/,
         use: [
-        'style-loader',
-        'css-loader'
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
+        ]
+      },
+      {
+        test: [/.css$|.scss$/],
+        use: [
+          "style-loader", 
+          'css-loader', 
+          'sass-loader'
         ]
       }
     ] 
