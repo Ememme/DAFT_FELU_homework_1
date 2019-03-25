@@ -63,9 +63,20 @@ module.exports = {
       {
         test: [/.css$|.scss$/],
         use: [
-          "style-loader",
-          'css-loader',
-          'sass-loader'
+          { loader: "style-loader", options: {} },
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: 'postcss',
+              plugins: [
+                require('autoprefixer')({
+                  'browsers': ['> 1%', 'last 2 versions']
+                }),
+              ]
+            }
+          },
+          { loader: "sass-loader", options: {} }
         ]
       },
       {
