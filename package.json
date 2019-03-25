@@ -8,8 +8,7 @@
     "start": "webpack-dev-server --mode development --open",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "deploy": "gh-pages -d dist",
-    "publish-demo": "npm run build && npm run deploy"
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
