@@ -2,6 +2,9 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var GoogleFontsPlugin = require('google-fonts-plugin');
 var RemovePlugin = require('remove-files-webpack-plugin');
 var path = require('path');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const devMode = process.env.NODE_ENV !== 'production'
+
 
 module.exports = {
   entry: './src/index.js',
@@ -9,6 +12,18 @@ module.exports = {
     filename: 'dist/main.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: "https://ememme.github.io/DAFT_FELU_homework_1/",
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: 'all',
+          enforce: true
+        }
+      }
+    }
   },
   plugins: [
     new HtmlWebpackPlugin(),
@@ -38,6 +53,10 @@ module.exports = {
       before: {
         include: ['dist']
       },
+    }),
+    new MiniCssExtractPlugin({
+      filename: devMode ? '[name].css' : '[name].[hash].css',
+      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
     })
   ],
   module: {
@@ -61,9 +80,9 @@ module.exports = {
         }]
       },
       {
-        test: [/.css$|.scss$/],
+        test: /\.(sa|sc|c)ss$/,
         use: [
-          { loader: "style-loader", options: {} },
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           { loader: 'css-loader', options: { importLoaders: 1 } },
           {
             loader: "postcss-loader",
